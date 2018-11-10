@@ -32,8 +32,8 @@ class Detail extends React.Component{
 
         return (<div>
             {   //this.state.commits.map((commit, index ) => ())
-                this.state.people.map((person) => (
-                    <p>
+                this.state.people.map((person, index) => (
+                    <p key={index}>
                         Hello, {person.name} from {person.country}!
                     </p>
                 ))
