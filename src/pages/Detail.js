@@ -4,27 +4,42 @@ import Chance from 'chance';
 class Detail extends React.Component{
     constructor(props){
         super(props);
-        //The name and country are set when the component is created, and not when it is rendered.
-        this.state = {
-            name: chance.first(),
-            country: chance.country({full:true})
+        const people = [];
+        for (let i = 0; i< 10;i++){
+            people.push({
+                name: chance.first(),
+                country: chance.country({
+                    full: true
+                })
+            })
+
+            this.state = {people};
+            //this.state = {commits: []};
         }
     }
 
 
     buttonClicked(){
-        this.forceUpdate();
+        const newState ={
+            name: chance.first()
+        };
+        this.setState(newState);
+        //this.forceUpdate();
         console.log('Button was clicked')
     }
 
     render(){
 
-        //return <p>{this.props.message} </p>
-        return<div> <p>Hello, {this.state.name} </p>
-            <p>You are from {this.state.country}</p>
-            <button onClick={this.buttonClicked.bind(this)}>Meet Someone New</button>
+        return (<div>
+            {   //this.state.commits.map((commit, index ) => ())
+                this.state.people.map((person) => (
+                    <p>
+                        Hello, {person.name} from {person.country}!
+                    </p>
+                ))
 
-        </div>
+            }
+        </div>);
 
     }
 }
